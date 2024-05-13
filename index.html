@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoT Node Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .data-item {
+            margin: 10px 0;
+        }
+        .data-label {
+            font-weight: bold;
+        }
+        a {
+            color: #0066ff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sensor Data Dashboard</h1>
+    
+    <form method="post" action="/">
+        <label for="new_threshold">Set New Temperature Threshold:</label>
+        <input type="text" id="new_threshold" name="new_threshold" placeholder="Temperature Threshold"><br>
+        <label for="new_light_level">Set New Light Level Threshold:</label>
+        <input type="text" id="new_light_level" name="new_light_level" placeholder="Light Level Threshold"><br>
+        <button type="submit">Update Thresholds</button>
+    </form>
+    
+    <div class="data-item">
+        <span class="data-label">Temperature:</span>
+        <span id="temperature">Loading...</span>
+    </div>
+    <div class="data-item">
+        <span class="data-label">Humidity:</span>
+        <span id="humidity">Loading...</span>
+    </div>
+    <div class="data-item">
+        <span class="data-label">Light Level:</span>
+        <span id="light_level">Loading...</span>
+    </div>
+    <div>
+        <a href="/analysis">View Detailed Analysis</a>
+    </div>
+
+    <!-- Include jQuery for AJAX functionality -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            function fetchData() {
+                console.log('Fetching data...');
+                $.ajax({
+                    url: '/fetch-data',
+                    type: 'GET',
+                    success: function(data) {
+                        $('#temperature').text(data.temperature + ' °C');
+                        $('#humidity').text(data.humidity + '%');
+                        $('#light_level').text(data.light_level);
+                    },
+                    error: function(error) {
+                        console.log('Error:', error);
+                    }
+                });
+            }
+            setInterval(fetchData, 5000);
+        });
+    </script>
+</body>
+</html>

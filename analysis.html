@@ -1,0 +1,50 @@
+User
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Analysis of Sensor Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 40px;
+        }
+        .analysis-item {
+            margin: 20px 0;
+        }
+        a {
+            color: #0066ff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sensor Data Analysis</h1>
+    <div class="analysis-item">
+        <strong>Average Temperature:</strong> {{ analysis.avg_temp }}°C
+    </div>
+    <div class="analysis-item">
+        <strong>Minimum Temperature:</strong> {{ analysis.min_temp }}°C
+    </div>
+    <div class="analysis-item">
+        <strong>Maximum Temperature:</strong> {{ analysis.max_temp }}°C
+    </div>
+    <div class="analysis-item">
+        <strong>Average Light Level:</strong> {{ analysis.avg_light }}
+    </div>
+    <div class="analysis-item">
+        <strong>Minimum Light Level:</strong> {{ analysis.min_light }}
+    </div>
+    <div class="analysis-item">
+        <strong>Maximum Light Level:</strong> {{ analysis.max_light }}
+    </div>
+    <div>
+        <a href="/">Back to Dashboard</a>
+    </div>
+</body>
+</html>
